@@ -1,13 +1,15 @@
 Morpholog-JS
 ============
 
-Mopholog-JS is Javascript library for russian language rules:
-* Decline (person names, phrases, geographic names);
-* Numeric to numerals convension;
-* Text tokenization;
-* Word stemming;
-* Sex determination;
-* Plural/singular form detection/convension;
-* Fwords detection;
+Mopholog-JS - клиент для сервиса Системэйт [Morpholog](http://systemate.ru/services/morpholog).
+
+Сервис предназначен для работы со следующими правила русского языка:
+* Склонение (Ф.И.О., произвольных фраз, топонимов);
+* Преобразование чисел в числительные;
+* Разбиение текста на слова;
+* Стемминг (stemming) слов (приведение слова к базовой форме);
+* Определение пола (по Ф.И.О., по фразе);
+* Определение и преобразование числа(множественного/единственного) фраз;
+* Определение нецензурной и ненормативной лексики;
 
 ![Morpholog](https://raw.github.com/systemate/morpholog-js/master/img/logo.png)
