@@ -5,20 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="robots" content="index, follow" />	
-	<link href="https://plus.google.com/+S1platform-public" rel="publisher" />
-	<meta name="author" content="Grigory Pykhov" />
-	<meta name="copyright" content="Grigory Pykhov" />
-	<meta name="keywords" content="s1, platform, framework, java, development, application, web, free" />
-	<meta name="description" content="S1-Platform - the web application development Java framework" />
 	
 	<!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-	<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
-
-	<link rel="icon" type="image/png" href="/img/logo/logo-32x32.png" />
 
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -28,168 +18,255 @@
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700,300italic&subset=latin' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic&subset=latin' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,700,300italic&subset=latin' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+    <script src="dist/morpholog-js.min.js"></script>
 
-    <script src="lib/s1-platform-site.min.js"></script>
-	<link href="lib/s1-platform-site.css" rel="stylesheet">
+    <title>Morpholog-JS</title>
 
-    <title>S1-Platform</title>
+    <script type="text/javascript">
+    	var printJSON = function(json){
+    		return JSON.stringify(json,null,"  ");
+    	};
+
+    	$(document).ready(function(){
+    		$("#decline").click(function(e){
+    			MorphologJS.declinePhrase($("#decline-text").val(),$("#decline-case").val(),function(res){
+    				$("#decline-result").html(printJSON(res));
+    			});
+    		});
+
+    		$("#gender").click(function(e){
+    			MorphologJS.getGender($("#gender-text").val(),function(res){
+    				$("#gender-result").html(printJSON(res));
+    			});
+    		});
+
+    		$("#toNumeral").click(function(e){
+    			MorphologJS.toNumeral($("#toNumeral-number").val(),$("#toNumeral-case").val(),$("#toNumeral-gender").val(),$("#toNumeral-live").is(":checked"),function(res){
+    				$("#toNumeral-result").html(printJSON(res));
+    			});
+    		});
+
+    		$("#number").click(function(e){
+    			MorphologJS.formatNumber($("#number-number").val(),$("#number-format").val(),function(res){
+    				$("#number-result").html(printJSON(res));
+    			});
+    		});
+
+    		$("#diff").click(function(e){
+    			MorphologJS.formatTimeDiff($("#diff-number").val(),$("#diff-round").is(":checked"),$("#diff-toNumeral").is(":checked"),function(res){
+    				$("#diff-result").html(printJSON(res));
+    			});
+    		});
+
+    		$("#fword").click(function(e){
+    			MorphologJS.detectFWords($("#fword-text").val(),function(res){
+    				$("#fword-result").html(printJSON(res));
+    			});
+    		});
+    	});
+    </script
 </head>
 <body data-spy="scroll" data-target="#menu">
 	<div class="container" id="home">
-		<div class="main-header">
-			<h1 id="title">
-				<img src="/img/logo/logo-152x152.png" alt="" width="152" height="152">
-				<span>S1-Platform</span>
-				<small>the web application development Java framework</small>
-				</h1>
-		</div>
-
-
-		<div class="row">
-			<div class="col-md-2">
-				<div id="menu" data-spy="affix" data-offset-top="180">
-					<ul class="list-group nav">
-				      	<li class="list-group-item"><a href="#home"><i class="fa fa-home"></i> Home</a></li>
-				      	<li class="list-group-item"><a href="#getting-started"><i class="fa fa-chevron-right"></i> Getting started</a></li>
-				      	<li class="list-group-item"><a href="#documentation"><i class="fa fa-book"></i> Documentation</a></li>
-				      	<li class="list-group-item"><a href="#contributing"><i class="fa fa-reply"></i> Contibuting</a></li>
-				      	<li class="list-group-item"><a href="#terms"><i class="fa fa-gavel"></i> Terms of use</a></li>
-				    </ul>
-				</div>
-			</div>
-			<div class="col-md-10">
-
-				<iframe src="//slid.es/s1-platform/what-is-s1/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 			
-				<h2 id="getting-started"><i class="fa fa-chevron-right"></i> Getting started</h2>
-				<h3>Architecture</h3>
-				<p>
-					Blue rectangles - are part of S1-Platform: 
-					<img src="/img/architecture.png" class="img-thumbnail">
-				</p>
-
-				<h3>Maven</h3>
-				<p>
-					S1-Platform is deployed in Maven Central, so you can easily include it into your maven project dependencies:
-<pre>
-&lt;dependency>
-    &lt;groupId>org.s1-platform&lt;/groupId>
-    &lt;artifactId>s1-core&lt;/artifactId>
-    &lt;version>${s1.version}&lt;/version>
-&lt;/dependency>
-</pre>			
-					Read more here <a href="https://github.com/s1-platform/s1/wiki/Quick-start-guide" target="_blank"><strong>Quick start guide <i class="fa fa-external-link"></i></strong></a>		
-				</p>
-
-				<h2 id="documentation"><i class="fa fa-book"></i> Documentation</h2>
-
-				<h3>Javadoc</h3>
-				<p>
-					Look at Javadoc (only for versions newer 2.2.0):
-					<ul>
-						<li><a href="/javadoc/2.2.0/index.html" target="_blank"><strong><i class="fa fa-coffee"></i> 2.2.0 version</strong></a></li>
-					</ul>
-				</p>
-
-				<h3>Articles</h3>
-				<p>
-					Read articles about framework in <a href="https://github.com/s1-platform/s1/wiki" target="_blank"><strong><i class="fa fa-files-o"></i> S1-Platform Wiki</strong></a>
-				</p>
-				<p>
-					Read our blog
-					<a href="http://s1-platform.blogspot.com" target="_blank"><strong><i class="fa fa-rss"></i> S1-Platform Blog</strong></a>
-				</p>
-
-				<h3>Have questions?</h3>
-				<p>
-					If you have any questions
-					<ul>
-						<li>First of all look at 
-						<a href="https://github.com/s1-platform/s1/wiki/FAQ" target="_blank"><strong><i class="fa fa-question"></i> FAQ</strong></a>, there you`ll find the most popular questions</li>
-						
-						<li>If you need to discus with developers directly, feel free posting new issues in 
-						<a href="https://github.com/s1-platform/s1/issues" target="_blank"><strong><i class="fa fa-tags"></i> Issue management system</strong></a></li>
-					</ul>
-				</p>
-
-				<h2 id="contributing"><i class="fa fa-reply"></i> Contributing</h2>
-				<p>
-					We are more than happy to accept external contributions to the project in the form of feedback, bug reports and even better - pull requests. 
-					At this time we are primarily focusing on improving the user-experience and stability of S1-Platform. 
-					Please keep this in mind if submitting feature requests, which we're happy to consider for future versions.
-				</p>
-				<p>
-					In order for us to help you please check that you've completed the following steps:
-					<ul>
-						<li>Made sure you're on the latest version</li>
-						<li>Used the search feature to ensure that the bug hasn't been reported before</li>
-						<li>Included as much information about the bug as possible, including any output you've received, what OS and version you're on, etc.</li>
-					</ul>
-					<a href="https://github.com/s1-platform/s1/issues/new" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-tag"></i> Submit new issue</a>
-				</p>
-
-				<h2 id="terms"><i class="fa fa-gavel"></i> Terms of use</h2>
-				<p>
-					S1-Platform is available under Apache License Version 2.0 contidions, read more at 
-					<a href="https://raw.github.com/s1-platform/s1/master/S1-LICENSE.txt" target="_blank"><strong>S1-Platform LICENSE.txt <i class="fa fa-external-link"></i></strong></a>, 
-					<a href="https://raw.github.com/s1-platform/s1/master/S1-NOTICE.txt" target="_blank"><strong>S1-Platform NOTICE.txt <i class="fa fa-external-link"></i></strong></a>
-				</p>
-				<p>
-					This site, Wiki articles are available under and other prin is available under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><strong>Creative Commons Attribution ShrareAlike <i class="fa fa-external-link"></i></strong></a>
-				</p>
-			</div>
-		</div>
-		<div id="social">
-			<div>
-                <!-- Place this tag where you want the +1 button to render. -->
-                <div class="g-plusone" data-size="medium"></div>
-                <div class="g-follow" data-annotation="bubble" data-height="20" data-href="//plus.google.com/113566492153594105622" data-rel="publisher"></div>
-            </div>
-
-			<div>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="s1-platform">Tweet</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            </div>
-
-            <!-- Yandex.Metrika counter -->
-            <script type="text/javascript">
-            (function (d, w, c) {
-                (w[c] = w[c] || []).push(function() {
-                    try {
-                        w.yaCounter24189196 = new Ya.Metrika({id:24189196,
-                                clickmap:true,
-                                trackLinks:true,
-                                accurateTrackBounce:true});
-                    } catch(e) { }
-                });
-
-                var n = d.getElementsByTagName("script")[0],
-                    s = d.createElement("script"),
-                    f = function () { n.parentNode.insertBefore(s, n); };
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-                if (w.opera == "[object Opera]") {
-                    d.addEventListener("DOMContentLoaded", f, false);
-                } else { f(); }
-            })(document, window, "yandex_metrika_callbacks");
-            </script>
-            <noscript><div><img src="//mc.yandex.ru/watch/24189196" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-            <!-- /Yandex.Metrika counter -->
-
-		</div>
-		<div id="footer">
+			<h2>Склонение</h2>
 			<p>
-				&copy; Grigory Pykhov, 2013-2014
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Фраза:</label>
+						<div class="col-sm-10">
+							<input id="decline-text" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Падеж:</label>
+						<div class="col-sm-10">
+							<p>
+								<select class="form-control" id="decline-case">
+									<option value="imenit">Именительный</option>
+									<option value="rodit">Родительный</option>
+									<option value="dat">Дательный</option>
+									<option value="vinit">Винительный</option>
+									<option value="tvorit">Творительный</option>
+									<option value="predl">Предложный</option>
+								</select>
+							</p>
+							<a href="javascript:void(0)" class="btn btn-primary btn-sm" id="decline">Склонять!</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Результат:</label>
+						<div class="col-sm-10">
+							<pre id="decline-result">&nbsp;</pre>
+						</div>
+					</div>
+				</form>
 			</p>
-		</div>
+
+
+
+			<h2>Определение рода</h2>
+			<p>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Фраза:</label>
+						<div class="col-sm-10">
+							<p>
+							<input id="gender-text" class="form-control">
+							</p>
+							<a href="javascript:void(0)" class="btn btn-primary btn-sm" id="gender">Определить род!</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Результат:</label>
+						<div class="col-sm-10">
+							<pre id="gender-result">&nbsp;</pre>
+						</div>
+					</div>
+				</form>
+			</p>
+
+
+
+			<h2>Число в числительное</h2>
+			<p>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Число:</label>
+						<div class="col-sm-10">
+							<input id="toNumeral-number" class="form-control" type="number">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Падеж:</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="toNumeral-case">
+								<option value="imenit">Именительный</option>
+								<option value="rodit">Родительный</option>
+								<option value="dat">Дательный</option>
+								<option value="vinit">Винительный</option>
+								<option value="tvorit">Творительный</option>
+								<option value="predl">Предложный</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Род:</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="toNumeral-gender">
+								<option value="male">Мужской</option>
+								<option value="female">Женский</option>
+								<option value="it">Средний</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Одушевленное:</label>
+						<div class="col-sm-10">
+							<p>
+								<input id="toNumeral-live" type="checkbox" class="form-control">
+							</p>
+							<a href="javascript:void(0)" class="btn btn-primary btn-sm" id="toNumeral">В числительное!</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Результат:</label>
+						<div class="col-sm-10">
+							<pre id="toNumeral-result">&nbsp;</pre>
+						</div>
+					</div>
+				</form>
+			</p>
+
+
+
+			<h2>Формат числа</h2>
+			<p>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Число:</label>
+						<div class="col-sm-10">
+							<input id="number-number" class="form-control" type="number">
+						</div>
+					</div>					
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Формат:</label>
+						<div class="col-sm-10">
+							<p>
+								<input id="number-format" class="form-control">
+							</p>
+							<a href="javascript:void(0)" class="btn btn-primary btn-sm" id="number">Форматировать!</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Результат:</label>
+						<div class="col-sm-10">
+							<pre id="number-result">&nbsp;</pre>
+						</div>
+					</div>
+				</form>
+			</p>
+
+
+
+			<h2>Формат разницы во времени</h2>
+			<p>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Разница, мс:</label>
+						<div class="col-sm-10">
+							<input id="diff-number" class="form-control" type="number">
+						</div>
+					</div>	
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Округлить:</label>
+						<div class="col-sm-10">
+							<input id="diff-round" class="form-control" type="checkbox">
+						</div>
+					</div>					
+					<div class="form-group">
+						<label class="col-sm-2 control-label">В числительное:</label>
+						<div class="col-sm-10">
+							<p>
+								<input id="diff-toNumeral" class="form-control" type="checkbox">
+							</p>
+							<a href="javascript:void(0)" class="btn btn-primary btn-sm" id="diff">Форматировать!</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Результат:</label>
+						<div class="col-sm-10">
+							<pre id="diff-result">&nbsp;</pre>
+						</div>
+					</div>
+				</form>
+			</p>
+
+
+
+			<h2>Детектор нецензурных слов и ненормативной лексики</h2>
+			<p>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">В числительное:</label>
+						<div class="col-sm-10">
+							<p>
+								<textarea id="fword-text" class="form-control" style="max-width:100%;"></textarea>
+							</p>
+							<a href="javascript:void(0)" class="btn btn-primary btn-sm" id="fword">Найти слова!</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Результат:</label>
+						<div class="col-sm-10">
+							<pre id="fword-result">&nbsp;</pre>
+						</div>
+					</div>
+				</form>
+			</p>
+
+
+		
 	</div>
-	<a href="https://github.com/s1-platform/s1"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>	
 </body>
 </html>
