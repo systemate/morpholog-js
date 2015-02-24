@@ -5,7 +5,7 @@ window.MorphologJS = {};
 
 (function(){
 
-	var URL = "http://service.systemate.ru/morpholog/dispatcher/MorphologMap";
+	var URL = "http://morpholog.systemate.ru/";
 	
 	var ajax = function(action,data,cb){
 		$.getJSON(URL+"."+action+"?_callback=?",data,function(data){
@@ -30,8 +30,8 @@ window.MorphologJS = {};
 		ajax("toNumeral",{number:n,"case":wordCase,gender:gender,live:live},cb)
 	};
 
-	MorphologJS.formatNumber = function(n,format,cb){
-		ajax("formatNumber",{number:n,format:format},cb)
+	MorphologJS.formatNumber = function(n,format,space,floatDelim,cb){
+		ajax("formatNumber",{number:n,format:format,space:space,floatDelim:floatDelim},cb)
 	};
 
 	MorphologJS.formatTimeDiff = function(diff,round,toNumeral,cb){
