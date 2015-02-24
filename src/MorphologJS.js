@@ -9,7 +9,7 @@ window.MorphologJS = {};
 	
 	var ajax = function(action,data,cb){
 		$.getJSON(URL+action+"?_callback=?",data,function(data){
-			if(data.success)
+			if(!data.exception)
 				cb(data.data);
 			else{
 				console.log("Morpholog service error: ",data);
