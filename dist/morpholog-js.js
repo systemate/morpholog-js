@@ -18,16 +18,16 @@ window.MorphologJS = {};
 		});
 	};
 
-	MorphologJS.declinePhrase = function(text,wordCase,cb){
-		ajax("declinePhrase",{text:text,"case":wordCase},cb)
+	MorphologJS.declinePhrase = function(phrase,wordCase,cb){
+		ajax("declinePhrase",{phrase:phrase,wordCase:wordCase},cb)
 	};
 
-	MorphologJS.getGender = function(text,cb){
-		ajax("getGender",{text:text},cb)
+	MorphologJS.getGender = function(phrase,cb){
+		ajax("getGender",{phrase:phrase},cb)
 	};
 
 	MorphologJS.toNumeral = function(n,wordCase,gender,live,cb){
-		ajax("toNumeral",{number:n,"case":wordCase,gender:gender,live:live},cb)
+		ajax("toNumeral",{number:n,wordCase:wordCase,gender:gender,live:live},cb)
 	};
 
 	MorphologJS.formatNumber = function(n,format,space,floatDelim,cb){
