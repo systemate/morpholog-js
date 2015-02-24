@@ -8,7 +8,7 @@ window.MorphologJS = {};
 	var URL = "http://morpholog.systemate.ru/";
 	
 	var ajax = function(action,data,cb){
-		$.getJSON(URL+"."+action+"?_callback=?",data,function(data){
+		$.getJSON(URL+action+"?_callback=?",data,function(data){
 			if(data.success)
 				cb(data.data);
 			else{
